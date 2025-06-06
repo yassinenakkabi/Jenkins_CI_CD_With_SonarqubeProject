@@ -1,14 +1,12 @@
-# Use a lightweight JRE 11 base image
+# But make sure to use the correct version of Java
 FROM adoptopenjdk/openjdk11:alpine-jre
 
-# Argument for the artifact location (can be overridden at build time)
+# Simply the artifact path
 ARG artifact=target/spring-boot-web.jar
 
-# Set working directory
 WORKDIR /opt/app
 
-# Copy the built JAR file to the container
 COPY ${artifact} app.jar
 
-# Run the application
+# This should not be changed
 ENTRYPOINT ["java","-jar","app.jar"]
